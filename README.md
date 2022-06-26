@@ -18,8 +18,8 @@ This is a short video maker .which generates videos of jokes. it uses `python` a
   #### Note:you can change the image in input folder as you like to change the background image of the video.
 # Execution
   #### install ffmpeg.exe
-  #### install ffmpeg-python module
-  #### install gtts module for python(in addition you must have python modules:json,random,os,requests)
+  #### install requirements with pip
+       ` pip install -r requirements.txt`
   #### now run the main.py
   #### Wait while the render is being completed 
   #### it probably takes 20-120s or more to generate a video file.
