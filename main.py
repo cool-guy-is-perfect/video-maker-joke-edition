@@ -1,7 +1,7 @@
 #!/bin/python
 
 import random
-import ffmpeg
+import audioread
 import os
 import joke_gen as test
 import json
@@ -40,14 +40,9 @@ class create:
  		self.file.write(self.subtitle)
  		self.file.close() #to change file access modes
 	def preProduce(self):
-		self.input_aud_1 = ffmpeg.probe(f"process/{self.audio_1}")
-		self.input_aud_2 = ffmpeg.probe(f"process/{self.audio_2}")
-		self.duration_aud_1 = self.input_aud_1['format']['duration']
-		self.duration_aud_1 = float(self.duration_aud_1)
-		self.duration_aud_1 = int(self.duration_aud_1)
-		self.duration_aud_2 = self.input_aud_2['format']['duration']
-		self.duration_aud_2 = float(self.duration_aud_2)
-		self.duration_aud_2 = int(self.duration_aud_2)
+		self.duration_aud_1 = audioread.audio_open(f"process/{self.audio_1}").duration
+		self.duration_aud_2 = audioread.audio_open(f"process/{self.audio_2}").duration
+		
 		print(self.duration_aud_2 + self.duration_aud_1)
 
 
