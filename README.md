@@ -18,7 +18,7 @@ This is a short video maker .which generates videos of jokes. it uses `python` a
 # Execution
   #### install ffmpeg.exe
   #### install requirements with pip
-       ` pip install -r requirements.txt`
+    pip install -r requirements.txt
   #### now run the main.py
   #### Wait while the render is being completed 
   #### it probably takes 20-120s or more to generate a video file.
