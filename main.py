@@ -1,7 +1,7 @@
 import random
 import ffmpeg
 import os
-import goke_gen as test
+import joke_gen as test
 import json
 class create:
 	def __init__(self,img):
