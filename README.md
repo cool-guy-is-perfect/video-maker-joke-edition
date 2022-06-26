@@ -1,5 +1,5 @@
 # video-maker-joke-edition
-This is a video maker .which generates videos of jokes. it uses python and ffmpeg installed to make videos.
+This is a short video maker .which generates videos of jokes. it uses `python` and `ffmpeg installed` to make short videos.
   # 
 ***
 # Requirements
