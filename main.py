@@ -66,16 +66,16 @@ class create:
 		os.system(f"""ffmpeg -y -i process/out-beta.mp4 -i process/audio-out.mp3 -map 0 -map 1:a -c:v copy -shortest out-main.mp4""")
 def generate():
 
-	n = 1 #random.randint(0,4)
-	video = create(f"input.jpg")#add n to get a random image from input folder
-    print(" Creating audio...   ", end="")
-	video.createAudio("audio.mp3","audio2.mp3")
+    n = 1 #random.randint(0,4)
+    video = create(f"input.jpg")#add n to get a random image from input folder
+    print(" Creating audio...   ",end="")
+    video.createAudio("audio.mp3","audio2.mp3")
     print("DONE \n Preproduce...    ", end="")
-	video.preProduce()
+    video.preProduce()
     print("DONE \n Generating subtitles...  ", end="")
-	video.createText()
+    video.createText()
     print("DONE \n Generating video...  ",end="")
-	video.createFile()
+    video.createFile()
     print("DONE \n\n\n")
     print("Video file saved as out-main.mp4")
 
