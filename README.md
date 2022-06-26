@@ -5,7 +5,6 @@ This is a short video maker .which generates videos of jokes. it uses `python` a
 # Requirements
   #### ffmpeg.exe installed 
   #### python installed
-  #### ffmpeg-python-installed
   #### basic python modules
   # 
 # How to use?
