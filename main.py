@@ -1,3 +1,5 @@
+#!/bin/python
+
 import random
 import ffmpeg
 import os
