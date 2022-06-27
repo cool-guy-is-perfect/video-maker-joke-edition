@@ -1,6 +1,1 @@
-1
-00:00:00,000 --> 00:00:2.0,000
-Why was the river rich?
-2
-00:00:02,000 --> 00:00:5.3,000
-Reply: Because it had two banks.
+
