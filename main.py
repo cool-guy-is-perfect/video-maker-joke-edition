@@ -35,8 +35,7 @@ class create:
  			self.start = self.end
  			self.end = self.end + self.duration_aud_2 +1
  			self.iterator1 += 1
- 		self.file = open("subtitle.srt", "r+")
- 		self.file.truncate(0)
+ 		self.file = open("subtitle.srt", "w") # create and oen for writing
  		self.file.write(self.subtitle)
  		self.file.close() #to change file access modes
 	def preProduce(self):
