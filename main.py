@@ -1,23 +1,26 @@
 #!/bin/python
 
+# Import
 import random
 import audioread
 import os
 import joke_gen as test
 import json
+
+#Main class
 class create:
-	def __init__(self,img):
+	def __init__(self,img): #Init
 		self.test = test
 		self.img = img
 		self.start = 0
 		self.end = 0
 		self.iterator1 = 1
-	def createAudio(self,aud1,aud2):
+	def createAudio(self,aud1,aud2): #create Audio
 		self.test.get()
 		self.audio_1 = aud1
 		self.audio_2 = aud2
 		self.test = test
-	def createText(self):
+	def createText(self): #create subtitle/text
  		self.subtitle = ""
  		self.quote = [test.data["setup"],"Reply: "+test.data["delivery"]]
  		for self.i in self.quote:
@@ -38,7 +41,7 @@ class create:
  		self.file = open("subtitle.srt", "w") # create and oen for writing
  		self.file.write(self.subtitle)
  		self.file.close() #to change file access modes
-	def preProduce(self):
+	def preProduce(self): #Make initial Arrangements
 		self.duration_aud_1 = audioread.audio_open(f"process/{self.audio_1}").duration
 		self.duration_aud_2 = audioread.audio_open(f"process/{self.audio_2}").duration
 		
@@ -47,7 +50,7 @@ class create:
 
 		#change some
 		self.end = self.duration_aud_1
-	def createFile(self):
+	def createFile(self):#Final Create File
 		# create a file
 		os.system(f"""ffmpeg -loop 1 -y -i input/{self.img} -c:v libx264 -t {self.duration_aud_2 + self.duration_aud_1 + 1} -pix_fmt yuv420p -vf scale=1080:1920 process/out-beta.mp4""")
 		# apply overlay
@@ -58,10 +61,10 @@ class create:
 		os.system(f"""ffmpeg -y -i process/out-cache.mp4 -vf "subtitles=subtitle.srt:force_style='Alignment=10,Fontsize=18,PrimaryColour=&H0xFAEBD7&,FontName=DejaVu Serif'" -c:a copy process/out-beta.mp4""")
 		# add audio
 		os.system(f"""ffmpeg -y -i process/out-beta.mp4 -i process/audio-out.mp3 -map 0 -map 1:a -c:v copy -shortest out-main.mp4""")
-def generate():
-
-    n = 1 #random.randint(0,4)
-    video = create(f"input.jpg")#add n to get a random image from input folder
+		
+def generate():					# For More:
+    n = 1 					# n = random.randint(0,4)
+    video = create(f"input.jpg")		# video = create(f"input{n}.jpg") #add n to get a random image from input folder
     print(" Creating audio...   ",end="")
     video.createAudio("audio.mp3","audio2.mp3")
     print("DONE \n Preproduce...    ", end="")
@@ -73,4 +76,8 @@ def generate():
     print("DONE \n\n\n")
     print("Video file saved as out-main.mp4")
 
-generate()
+generate() #Call this function to generate a video
+
+						###############################################
+# Made For Fun
+	
