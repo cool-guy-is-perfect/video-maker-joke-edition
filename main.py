@@ -61,8 +61,8 @@ class create:
 		os.system(f"""ffmpeg -y -i process/audio-out.wav -i process/out-cache-final.avi out-main.avi""")
 
 def generate():
-    n = 1 #random.randint(0,4)
-    video = create(f"input.jpg")#video = create(f"input{n}.jpg") #add n to get a random image from input folder
+    n = 1 						#n = random.randint(0,any number of inputs)
+    video = create(f"input.jpg")			#video = create(f"input{n}.jpg") #add n to get a random image from input folder:)
     print(" Creating audio...   ",end="")
     video.createAudio("audio.mp3","audio2.mp3")
     print("DONE \n Preproduce...    ", end="")
