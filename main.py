@@ -58,7 +58,7 @@ class create:
 		# add text
 		os.system(f"""ffmpeg -y -i process/out-cache.avi -vf "subtitles=subtitle.srt:force_style='Alignment=10,Fontsize=18,PrimaryColour=&H0xFAEBD7&,FontName=DejaVu Serif'" -c:a copy process/out-cache-final.avi""")
 		# add audio
-		os.system(f"""ffmpeg -y -i process/audio-out.wav -i process/out-cache-final.avi out-main.mkv""")
+		os.system(f"""ffmpeg -y -i process/audio-out.wav -i process/out-cache-final.avi out-main.avi""")
 
 def generate():
     n = 1 #random.randint(0,4)
