@@ -1,7 +1,9 @@
+#!/bin/python
+
 import random
-import ffmpeg
+import audioread
 import os
-import goke_gen as test
+import joke_gen as test
 import json
 class create:
 	def __init__(self,img):
@@ -33,19 +35,13 @@ class create:
  			self.start = self.end
  			self.end = self.end + self.duration_aud_2 +1
  			self.iterator1 += 1
- 		self.file = open("subtitle.srt", "r+")
- 		self.file.truncate(0)
+ 		self.file = open("subtitle.srt", "w") # create and oen for writing
  		self.file.write(self.subtitle)
  		self.file.close() #to change file access modes
 	def preProduce(self):
-		self.input_aud_1 = ffmpeg.probe(f"process/{self.audio_1}")
-		self.input_aud_2 = ffmpeg.probe(f"process/{self.audio_2}")
-		self.duration_aud_1 = self.input_aud_1['format']['duration']
-		self.duration_aud_1 = float(self.duration_aud_1)
-		self.duration_aud_1 = int(self.duration_aud_1)
-		self.duration_aud_2 = self.input_aud_2['format']['duration']
-		self.duration_aud_2 = float(self.duration_aud_2)
-		self.duration_aud_2 = int(self.duration_aud_2)
+		self.duration_aud_1 = audioread.audio_open(f"process/{self.audio_1}").duration
+		self.duration_aud_2 = audioread.audio_open(f"process/{self.audio_2}").duration
+		
 		print(self.duration_aud_2 + self.duration_aud_1)
 
 
@@ -64,11 +60,17 @@ class create:
 		os.system(f"""ffmpeg -y -i process/out-beta.mp4 -i process/audio-out.mp3 -map 0 -map 1:a -c:v copy -shortest out-main.mp4""")
 def generate():
 
-	n = 1 #random.randint(0,4)
-	video = create(f"input.jpg")#add n to get a random image from input folder
-	video.createAudio("audio.mp3","audio2.mp3")
-	video.preProduce()
-	video.createText()
-	video.createFile()
+    n = 1 #random.randint(0,4)
+    video = create(f"input.jpg")#add n to get a random image from input folder
+    print(" Creating audio...   ",end="")
+    video.createAudio("audio.mp3","audio2.mp3")
+    print("DONE \n Preproduce...    ", end="")
+    video.preProduce()
+    print("DONE \n Generating subtitles...  ", end="")
+    video.createText()
+    print("DONE \n Generating video...  ",end="")
+    video.createFile()
+    print("DONE \n\n\n")
+    print("Video file saved as out-main.mp4")
 
 generate()

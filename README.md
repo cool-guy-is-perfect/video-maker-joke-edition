@@ -4,20 +4,25 @@ This is a short video maker .which generates videos of jokes. it uses `python` a
 ***
 
 
+
 ## Requirements:
-  #### ffmpeg.exe installed 
+  #### ffmpeg installed 
   #### python installed
   #### basic python modules
 
 
 ## Execution:
-  #### install ffmpeg.exe
-  #### install ffmpeg-python module
-  #### install gtts module for python(in addition you must have python modules:json,random,os,requests)
+  #### install ffmpeg
+  #### install required modules (gtts, requests, json, random). In command line you can use the command below
+    pip install -r requirements.txt
+>
   #### now run the main.py
   #### Wait while the render is being completed 
   #### it probably takes 20-120s or more to generate a video file.
   ###### thanks :)
+
+
+
   
   
 ## Info:
@@ -28,3 +33,4 @@ This is a short video maker .which generates videos of jokes. it uses `python` a
   #### the *additional folder* contains an overlay which applies a translucent look to the video.
   #### the *input folder* contains a sample image which is used in the video.
   #### Note:you can change the image in input folder as you like to change the background image of the video.
+

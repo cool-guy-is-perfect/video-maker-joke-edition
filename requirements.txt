@@ -1,0 +1,6 @@
+audioread
+gtts
+requests
+json
+random
+os
