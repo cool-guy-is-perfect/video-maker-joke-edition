@@ -36,15 +36,18 @@ class create:
  			self.start = self.end
  			self.end = self.end + self.duration_aud_2 +1
  			self.iterator1 += 1
- 		self.file = open("subtitle.srt", "w") # create and oen for writing
+ 		self.file = open("subtitle.srt", "w") # create and open for writing
  		self.file.write(self.subtitle)
  		self.file.close() #to change file access modes
+
 	def preProduce(self):
 		self.duration_aud_1 = audioread.audio_open(f"process/{self.audio_1}").duration
 		self.duration_aud_2 = audioread.audio_open(f"process/{self.audio_2}").duration
 		print(self.duration_aud_2 + self.duration_aud_1)
 		#change some
 		self.end = self.duration_aud_1
+
+
 	def createFile(self):
 		os.system(f"""ffmpeg -loop 1 -y -i input/{self.img} -i additional/overlay.png -filter_complex "[1]scale=    iw/2:-1[b];[0:v][b] overlay" -c:v libx264 -t {self.duration_aud_2 + self.duration_aud_1 + 1} -pix_fmt yuv420p -vf scale=1080:1920 process/out-cache.avi""")
 		os.system(f"""ffmpeg -y -i "concat:process/{self.audio_1}|process/{self.audio_2}" -i process/out-cache.avi -vf "subtitles=subtitle.srt:force_style='Alignment=10,Fontsize=18,PrimaryColour=&H0xFAEBD7&,FontName=DejaVu Serif'" -c:a copy out-main.avi""")
