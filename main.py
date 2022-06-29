@@ -1,11 +1,11 @@
 #!/bin/python
 
-#
 import random
 import audioread
 import os
 import joke_gen as test
 import json
+
 class create:
 	def __init__(self,img):
 		self.test = test
@@ -36,29 +36,22 @@ class create:
  			self.start = self.end
  			self.end = self.end + self.duration_aud_2 +1
  			self.iterator1 += 1
- 		self.file = open("subtitle.srt", "w") # create and oen for writing
+ 		self.file = open("subtitle.srt", "w") # create and open for writing
  		self.file.write(self.subtitle)
  		self.file.close() #to change file access modes
+
 	def preProduce(self):
 		self.duration_aud_1 = audioread.audio_open(f"process/{self.audio_1}").duration
 		self.duration_aud_2 = audioread.audio_open(f"process/{self.audio_2}").duration
-
 		print(self.duration_aud_2 + self.duration_aud_1)
-
-
 		#change some
 		self.end = self.duration_aud_1
+
+
 	def createFile(self):
-		# apply overlay
-		os.system(f"""ffmpeg -y -i input/{self.img} -i additional/overlay.png -filter_complex "[1]scale=iw/2:-1[b];[0:v][b] overlay" process/BG.png""")
-		# combine audio
-		os.system(f"""ffmpeg -y -i "concat:process/{self.audio_1}|process/{self.audio_2}" -acodec copy process/audio-out.wav""")
-		# create a file
-		os.system(f"""ffmpeg -loop 1 -y -i process/BG.png -c:v libx264 -t {self.duration_aud_2 + self.duration_aud_1 + 1} -pix_fmt yuv420p -vf scale=1080:1920 process/out-cache.avi""")
-		# add text
-		os.system(f"""ffmpeg -y -i process/out-cache.avi -vf "subtitles=subtitle.srt:force_style='Alignment=10,Fontsize=18,PrimaryColour=&H0xFAEBD7&,FontName=DejaVu Serif'" -c:a copy process/out-cache-final.avi""")
-		# add audio
-		os.system(f"""ffmpeg -y -i process/audio-out.wav -i process/out-cache-final.avi out-main.avi""")
+		os.system(f"""ffmpeg -loop 1 -y -i input/{self.img} -i additional/overlay.png -filter_complex "[1]scale=    iw/2:-1[b];[0:v][b] overlay" -c:v libx264 -t {self.duration_aud_2 + self.duration_aud_1 + 1} -pix_fmt yuv420p -vf scale=1080:1920 process/out-cache.avi""")
+		os.system(f"""ffmpeg -y -i "concat:process/{self.audio_1}|process/{self.audio_2}" -i process/out-cache.avi -vf "subtitles=subtitle.srt:force_style='Alignment=10,Fontsize=18,PrimaryColour=&H0xFAEBD7&,FontName=DejaVu Serif'" -c:a copy out-main.avi""")
+
 
 def generate():
     n = 1 						#n = random.randint(0,any number of inputs)
@@ -72,6 +65,6 @@ def generate():
     print("DONE \n Generating video...  ",end="")
     video.createFile()
     print("DONE \n\n\n")
-    print("Video file saved as out-main.mp4")
+    print("Video file saved as out-main.avi")
 
 generate()
