@@ -65,6 +65,6 @@ def generate():
     print("DONE \n Generating video...  ",end="")
     video.createFile()
     print("DONE \n\n\n")
-    print("Video file saved as out-main.mp4")
+    print("Video file saved as out-main.avi")
 
 generate()
