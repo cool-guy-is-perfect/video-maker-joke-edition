@@ -1,11 +1,20 @@
 #!/bin/python
 
+#basic Python libraries
 import random
-import audioread
 import os
-import joke_gen as test
-import json
 
+#joke Api module
+import joke_gen as test
+
+#non pre installed packages
+try:
+	import audioread
+except:
+	os.system("pip install -r requirements.txt")
+
+#code begins:
+	
 class create:
 	def __init__(self,img):
 		self.test = test
