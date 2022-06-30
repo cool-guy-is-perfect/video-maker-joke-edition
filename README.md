@@ -12,8 +12,9 @@ This is a short video maker .which generates videos of jokes. it uses `python` a
 
 
 ## Execution:
-  #### install ffmpeg
-  #### install required modules (gtts, requests, json, random). In command line you can use the command below
+  #### install ffmpeg from their official site
+  #### double click and run the code
+  #### ISSUES ARISING : install required modules (gtts, requests, json, random). In command line you can use the command below
     pip install -r requirements.txt
 >
   #### now run the main.py
