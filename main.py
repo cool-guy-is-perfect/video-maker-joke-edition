@@ -58,7 +58,7 @@ class create:
 
 
 	def createFile(self):
-		os.system(f"""ffmpeg -loop 1 -y -i input/{self.img} -i additional/overlay.png -filter_complex "[1]scale=    iw/2:-1[b];[0:v][b] overlay" -c:v libx264 -t {self.duration_aud_2 + self.duration_aud_1 + 1} -pix_fmt yuv420p -vf scale=1080:1920 process/out-cache.avi""")
+		os.system(f"""ffmpeg -loop 1 -y -i input/{self.img} -i additional/overlay.png -filter_complex "[1:v]scale=iw/2:-2[b];[0:v][b] overlay[overlayed];[overlayed]scale=1080:1920" -c:v libx264 -t {self.duration_aud_2 + self.duration_aud_1 + 1} -pix_fmt yuv420p process/out-cache.avi""")
 		os.system(f"""ffmpeg -y -i "concat:process/{self.audio_1}|process/{self.audio_2}" -i process/out-cache.avi -vf "subtitles=subtitle.srt:force_style='Alignment=10,Fontsize=18,PrimaryColour=&H0xFAEBD7&,FontName=DejaVu Serif'" -c:a copy out-main.avi""")
 
 
